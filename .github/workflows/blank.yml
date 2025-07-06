@@ -1,0 +1,28 @@
+name: Run Apache
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  apache-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Apache
+        run: sudo apt update && sudo apt install -y apache2
+
+      - name: Start Apache
+        run: |
+          sudo systemctl start apache2
+          sudo systemctl status apache2
+
+      - name: Serve a simple page
+        run: |
+          echo "Hello from GitHub Actions Apache server!" | sudo tee /var/www/html/index.html
+
+      - name: Curl the local Apache server
+        run: curl -I http://localhost
