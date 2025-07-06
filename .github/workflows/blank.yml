@@ -25,4 +25,4 @@ jobs:
           echo "Hello from GitHub Actions Apache server!" | sudo tee /var/www/html/index.html
 
       - name: Curl the local Apache server
-        run: curl -I http://localhost
+        run: curl -I https://saineelagiri.github.io/apache-github
